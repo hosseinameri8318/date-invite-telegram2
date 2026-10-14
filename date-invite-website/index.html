@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b9f1ef">
+  <title>یه دعوت کوچولو 💗</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --turquoise: #50c9c6;
+      --turquoise-dark: #168d91;
+      --turquoise-pale: #e6fbfa;
+      --pink: #ff8fbd;
+      --pink-dark: #e95d99;
+      --pink-pale: #fff0f7;
+      --ink: #39475a;
+      --muted: #778399;
+      --white: #fff;
+      --shadow: 0 24px 70px rgba(37, 120, 135, .16);
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px 15px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 16%, rgba(255,143,189,.32) 0 8%, transparent 8.3%),
+        radial-gradient(circle at 88% 82%, rgba(80,201,198,.25) 0 10%, transparent 10.3%),
+        linear-gradient(140deg, #e3fbfa 0%, #fff4f9 51%, #d9f7f6 100%);
+      font-family: 'Vazirmatn', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+    body::before, body::after {
+      content: '♡'; position: fixed; z-index: 0; pointer-events: none;
+      font-family: Georgia, serif; color: rgba(233,93,153,.24);
+    }
+    body::before { top: 5%; right: 7%; font-size: clamp(48px, 8vw, 100px); transform: rotate(14deg); }
+    body::after { bottom: 4%; left: 8%; font-size: clamp(60px, 9vw, 120px); color: rgba(22,141,145,.22); transform: rotate(-13deg); }
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    .page-wrap { width: min(100%, 720px); position: relative; z-index: 1; }
+    .card {
+      position: relative; overflow: hidden; width: 100%; min-height: 470px;
+      padding: clamp(24px, 5vw, 47px); border: 1px solid rgba(255,255,255,.82);
+      border-radius: 30px; background: rgba(255,255,255,.82); backdrop-filter: blur(14px);
+      box-shadow: var(--shadow); text-align: center;
+    }
+    .card::before {
+      content: ''; position: absolute; inset: 0 0 auto; height: 7px;
+      background: linear-gradient(90deg, var(--turquoise), #a3ece7 45%, var(--pink));
+    }
+    .topline { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 22px; padding: 7px 17px;
+      color: var(--turquoise-dark); background: var(--turquoise-pale); border: 1px solid #c9f0ee;
+      border-radius: 999px; font-size: 13px; }
+    .tiny-heart { display: inline-block; color: var(--pink-dark); animation: beat 1.25s infinite; }
+    h1, h2, p { margin-top: 0; }
+    h1 { color: #34465b; font-size: clamp(25px, 4.6vw, 38px); line-height: 1.9; font-weight: 700; margin-bottom: 13px; }
+    h2 { color: var(--turquoise-dark); font-size: clamp(21px, 4vw, 30px); line-height: 1.9; margin-bottom: 12px; }
+    p { font-size: clamp(15px, 2.5vw, 17px); line-height: 2.1; color: var(--muted); }
+    .decor { font-size: 32px; letter-spacing: 8px; margin: 5px 0 18px; }
+    .choices { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; margin: 28px auto 0; max-width: 500px; }
+    .choice {
+      min-height: 135px; border: 1px solid #e8edf2; border-radius: 22px; background: white;
+      box-shadow: 0 8px 24px rgba(43,105,127,.07); cursor: pointer; color: var(--ink);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    }
+    .choice:hover, .choice:focus-visible { transform: translateY(-5px); box-shadow: 0 14px 27px rgba(43,105,127,.13); outline: none; border-color: var(--pink); }
+    .emoji { font-family: system-ui, sans-serif; font-size: 44px; line-height: 1.4; }
+    .choice-label { font-size: 17px; font-weight: 600; }
+    .fruit-choice { min-height: 125px; }
+    .fruit-choice .emoji { font-size: 52px; }
+    .field-wrap { width: min(100%, 450px); margin: 21px auto 0; text-align: right; }
+    label { display: block; font-size: 15px; margin-bottom: 10px; color: #59667a; }
+    .text-input { width: 100%; min-height: 54px; padding: 10px 17px; border: 1.5px solid #dbe5eb; border-radius: 15px; background: #fbfeff; color: var(--ink); outline: none; transition: border .2s, box-shadow .2s; }
+    .text-input:focus { border-color: var(--turquoise); box-shadow: 0 0 0 4px rgba(80,201,198,.14); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 49px; padding: 9px 25px; border: 0; border-radius: 15px; cursor: pointer;
+      color: white; background: linear-gradient(105deg, var(--turquoise-dark), var(--turquoise));
+      box-shadow: 0 9px 20px rgba(22,141,145,.18); transition: transform .18s ease, filter .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.03); }
+    .btn:focus-visible { outline: 3px solid rgba(233,93,153,.45); outline-offset: 3px; }
+    .btn-pink { background: linear-gradient(105deg, var(--pink-dark), var(--pink)); box-shadow: 0 9px 20px rgba(233,93,153,.18); }
+    .btn-soft { color: var(--turquoise-dark); background: #e8fbfa; box-shadow: none; border: 1px solid #c8efed; }
+    .form-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .feedback { min-height: 35px; margin: 14px 0 0; color: var(--pink-dark); font-size: 15px; line-height: 1.9; }
+    .attempts { font-size: 13px; margin: 5px 0; color: #9aa5b4; }
+    .screen { display: none; animation: arrive .38s ease both; }
+    .screen.active { display: block; }
+    .date-stage { position: relative; max-width: 470px; margin: 25px auto 0; min-height: 110px; }
+    .date-actions { display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; min-height: 80px; }
+    .no-btn { position: relative; background: #fff0f6; border: 1px solid #ffd1e5; color: #d84b88; box-shadow: none; }
+    .no-btn.dodging { position: absolute; z-index: 2; }
+    .upload-zone { width: min(100%, 480px); margin: 22px auto 0; padding: 20px; border-radius: 22px; border: 2px dashed #9bdedc; background: linear-gradient(145deg,#effdfc,#fff6fa); }
+    .upload-zone .eye-icon { font-family: system-ui, sans-serif; font-size: 44px; }
+    .file-picker { display: block; width: 100%; margin-top: 12px; padding: 14px; border: 1px solid #e3eaf0; border-radius: 13px; background: #fff; font-family: Tahoma, sans-serif; font-size: 13px; }
+    .preview { display: none; max-width: 100%; max-height: 230px; object-fit: contain; margin: 18px auto 0; border-radius: 16px; border: 3px solid white; box-shadow: 0 7px 25px rgba(32,104,121,.17); }
+    .preview.show { display: block; }
+    .file-note { font-size: 12px; line-height: 1.9; margin: 10px 0 0; }
+    .timer-pill { display: inline-flex; align-items: center; justify-content: center; min-width: 79px; padding: 6px 14px; border-radius: 999px; color: #d84b88; background: var(--pink-pale); border: 1px solid #ffd6e8; font-family: system-ui, sans-serif; font-weight: 800; font-size: 21px; margin-bottom: 14px; }
+    .equations { direction: ltr; text-align: left; width: fit-content; max-width: 100%; margin: 18px auto; padding: 18px 22px; border: 1px solid #d5efed; border-radius: 17px; background: #f7ffff; color: #46586a; font-family: 'Courier New', monospace; font-size: clamp(12px, 2.2vw, 16px); line-height: 2; overflow-wrap: anywhere; }
+    .answer-row { display: flex; gap: 9px; width: min(100%, 450px); margin: 12px auto 0; }
+    .answer-row input { flex: 1; min-width: 0; }
+    .end-heart { font-family: system-ui,sans-serif; font-size: 57px; margin: 8px 0 18px; animation: floaty 2.8s ease-in-out infinite; }
+    .restart { margin-top: 10px; }
+    [hidden] { display: none !important; }
+    button:disabled { opacity: .55; cursor: not-allowed; transform: none !important; }
+    .footer { text-align: center; color: #8b9aa8; font-size: 11px; margin-top: 18px; direction: rtl; }
+    @keyframes arrive { from { opacity: 0; transform: translateY(9px) scale(.992); } to { opacity: 1; transform: none; } }
+    @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+    @keyframes floaty { 0%,100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-8px) rotate(5deg); } }
+    @media (max-width: 480px) {
+      body { padding: 14px 10px; }
+      .card { min-height: 0; padding: 25px 18px 28px; border-radius: 23px; }
+      .choices { gap: 10px; margin-top: 20px; }
+      .choice { min-height: 118px; border-radius: 18px; }
+      .emoji { font-size: 39px; }
+      .decor { font-size: 27px; }
+      .date-actions { gap: 10px; }
+      .btn { padding: 8px 19px; }
+      .answer-row { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <main class="card" aria-live="polite">
+      <section id="screen-home" class="screen active">
+        <div class="decor" aria-hidden="true">🩵 💗 🩵</div>
+        <h1>سلام ! اول بهم بگو کدومی</h1>
+        <p>برای ادامه، یکی از این دو تا رو انتخاب کن :)</p>
+        <div class="choices">
+          <button type="button" class="choice fruit-choice" id="appleChoice" aria-label="سیب سبز">
+            <span class="emoji" aria-hidden="true">🍏</span>
+          </button>
+          <button type="button" class="choice fruit-choice" id="cherryChoice" aria-label="گیلاس">
+            <span class="emoji" aria-hidden="true">🍒</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="screen-mother" class="screen">
+        <div class="decor" aria-hidden="true">🌸 🍒 🌸</div>
+        <h1>اسم مادرت چیه ؟</h1>
+        <p id="motherHint">جوابت رو این پایین بنویس.</p>
+        <form id="motherForm" class="field-wrap">
+          <label for="motherAnswer">اسم مامان:</label>
+          <input id="motherAnswer" class="text-input" type="text" autocomplete="off" placeholder="اینجا بنویس..." required>
+          <div class="form-actions"><button class="btn" type="submit">ثبت جواب 💌</button></div>
+          <div id="motherFeedback" class="feedback" role="status"></div>
+          <p id="attemptCounter" class="attempts"></p>
+        </form>
+        <div id="cherryBackWrap" class="form-actions" hidden><button id="backHome" type="button" class="btn btn-soft">برگرد به صفحه اول ↩</button></div>
+      </section>
+
+      <section id="screen-date" class="screen">
+        <div class="decor" aria-hidden="true">💗 ✨ 🩵</div>
+        <h1>دوست داری باهم بریم بیرون ؟</h1>
+        <p>یه قرار قشنگ، با یه آدم قشنگ‌تر؟ 🌷</p>
+        <div class="date-stage" id="dateStage">
+          <div class="date-actions" id="dateActions">
+            <button type="button" id="yesBtn" class="btn btn-pink">آره، بریم! 💕</button>
+            <button type="button" id="noBtn" class="btn no-btn">نه 🙈</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-cost" class="screen">
+        <div class="decor" aria-hidden="true">💸 💗 💸</div>
+        <h1>خب میدونستم که دوست داری بریم بیرون اما همینجوری نمیشه که هزینه داره. کدوم مدل هزینه دادن رو انتخاب میکنی ؟</h1>
+        <p>یکی رو انتخاب کن تا بریم مرحله‌ی بعد 😌</p>
+        <div class="choices">
+          <button type="button" class="choice" id="easyChoice"><span class="choice-label">آسون</span></button>
+          <button type="button" class="choice" id="hardChoice"><span class="choice-label">سخت</span></button>
+        </div>
+      </section>
+
+      <section id="screen-upload" class="screen">
+        <div class="decor" aria-hidden="true">👀 💗 👀</div>
+        <h1>یه عکس از چشمات رو اینجا آپلود کن</h1>
+        <p>فقط یه عکس قشنگ از چشمات کافیه ✨</p>
+        <div class="upload-zone">
+          <div class="eye-icon" aria-hidden="true">📷</div>
+          <form id="uploadForm" enctype="multipart/form-data">
+            <label for="eyePhoto">عکس چشم‌ها:</label>
+            <input id="eyePhoto" class="file-picker" type="file" name="photo" accept="image/*" required>
+            <img id="photoPreview" class="preview" alt="پیش‌نمایش عکس انتخاب‌شده">
+            <p id="uploadError" class="feedback" role="alert"></p>
+            <div class="form-actions"><button id="sendPhotoBtn" class="btn btn-pink" type="submit">آپلود و ارسال عکس 💌</button></div>
+          </form>
+          <p class="file-note">با زدن دکمه، عکس به تلگرام حسین ارسال می‌شه. حداکثر حجم عکس ۴ مگابایته.</p>
+        </div>
+      </section>
+
+      <section id="screen-hard" class="screen">
+        <div class="decor" aria-hidden="true">🧠 ⏳ 🧠</div>
+        <h1>فقط ۵ ثانیه وقت داری!</h1>
+        <div id="timer" class="timer-pill" aria-live="assertive">۵ ثانیه</div>
+        <p>دستگاه زیر رو در نظر بگیر؛ هر پنج مجهول رو به دست بیار:</p>
+        <div class="equations" aria-label="دستگاه پنج معادله و پنج مجهول">
+          17x + 23y − 11z + 5u − 19v = 41<br>
+          31x − 7y + 29z − 13u + 3v = −17<br>
+          11x + 37y − 5z + 17u − 23v = 89<br>
+          19x − 13y + 41z + 7u + 11v = 6<br>
+          5x + 17y − 31z + 23u + 37v = −52
+        </div>
+        <form id="mathForm" class="field-wrap">
+          <label for="mathAnswer">جوابت رو همین‌جا بنویس (اصلاً بررسی نمی‌شه 😈):</label>
+          <input id="mathAnswer" class="text-input" type="text" autocomplete="off" placeholder="x=...، y=...">
+          <div class="form-actions"><button class="btn" type="submit">جواب نهایی!</button></div>
+        </form>
+        <div id="mathResult" class="feedback" role="status"></div>
+        <div id="mathReturnWrap" class="form-actions" hidden><button id="goEasy" type="button" class="btn btn-pink">برگرد به گزینه آسون 🌸</button></div>
+      </section>
+
+      <section id="screen-final" class="screen">
+        <div class="end-heart" aria-hidden="true">💗</div>
+        <h1>پس از برسی عکس باهاتون در تماس خواهم بود</h1>
+        <p>تا اون موقع، لبخند یادت نره :)</p>
+        <button type="button" id="restartBtn" class="btn btn-soft restart">از اول؟ ↻</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const screens = [...document.querySelectorAll('.screen')];
+      let selectedFruit = null;
+      let cherryAttempts = 0;
+      let mathTimer = null;
+      let mathTimeLeft = 5;
+      let photoObjectUrl = null;
+
+      const byId = (id) => document.getElementById(id);
+      const showScreen = (id) => {
+        screens.forEach((screen) => screen.classList.toggle('active', screen.id === id));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+      const normalizePersian = (value) => value.trim().replace(/[\u064A]/g, 'ی').replace(/[\u0643]/g, 'ک').replace(/\s+/g, '');
+      const toPersianDigits = (value) => String(value).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
+
+      function startMotherQuestion(fruit) {
+        selectedFruit = fruit;
+        cherryAttempts = 0;
+        byId('motherAnswer').value = '';
+        byId('motherFeedback').textContent = '';
+        byId('attemptCounter').textContent = fruit === 'cherry' ? 'تلاش: ۰ از ۳' : '';
+        byId('motherHint').textContent = fruit === 'cherry' ? 'جوابت رو بنویس و ببین چی می‌شه! 🍒' : 'جوابت رو این پایین بنویس.';
+        byId('cherryBackWrap').hidden = true;
+        byId('motherAnswer').disabled = false;
+        byId('motherForm').querySelector('button[type="submit"]').disabled = false;
+        showScreen('screen-mother');
+        setTimeout(() => byId('motherAnswer').focus(), 250);
+      }
+
+      byId('appleChoice').addEventListener('click', () => startMotherQuestion('apple'));
+      byId('cherryChoice').addEventListener('click', () => startMotherQuestion('cherry'));
+
+      byId('motherForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const answer = normalizePersian(byId('motherAnswer').value);
+        if (!answer) return;
+        if (selectedFruit === 'apple') {
+          if (answer === normalizePersian('لیلا')) {
+            byId('motherFeedback').textContent = '';
+            showScreen('screen-date');
+          } else {
+            byId('motherFeedback').textContent = 'یه بار دیگه فکر کن و درست بنویس 😉';
+            byId('motherAnswer').select();
+          }
+          return;
+        }
+        cherryAttempts += 1;
+        byId('attemptCounter').textContent = `تلاش: ${toPersianDigits(cherryAttempts)} از ۳`;
+        if (cherryAttempts < 3) {
+          byId('motherFeedback').textContent = 'غلطه! یه بار دیگه امتحان کن 😏';
+          byId('motherAnswer').value = '';
+          byId('motherAnswer').focus();
+        } else {
+          byId('motherFeedback').textContent = 'قاسمی خجالت بکش برو گزینه خودتو بزن';
+          byId('motherAnswer').disabled = true;
+          byId('motherForm').querySelector('button[type="submit"]').disabled = true;
+          byId('cherryBackWrap').hidden = false;
+        }
+      });
+
+      byId('backHome').addEventListener('click', () => {
+        selectedFruit = null;
+        showScreen('screen-home');
+      });
+
+      // The 
+// button should keep dodging within its little stage.
+      const dateStage = byId('dateStage');
+      const noBtn = byId('noBtn');
+      let dodgeCount = 0;
+      function dodgeNoButton(event) {
+        if (!byId('screen-date').classList.contains('active')) return;
+        if (event) event.preventDefault();
+        const stageRect = dateStage.getBoundingClientRect();
+        const buttonRect = noBtn.getBoundingClientRect();
+        noBtn.classList.add('dodging');
+        const maxX = Math.max(0, stageRect.width - buttonRect.width - 4);
+        const maxY = 12;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+        noBtn.style.right = 'auto';
+        noBtn.style.transform = `rotate(${Math.random() * 12 - 6}deg)`;
+        dodgeCount++;
+        if (dodgeCount % 3 === 0) byId('yesBtn').textContent = 'آره دیگه، بریم! 💕';
+      }
+      noBtn.addEventListener('pointerenter', dodgeNoButton);
+      noBtn.addEventListener('pointerdown', dodgeNoButton);
+      noBtn.addEventListener('click', dodgeNoButton);
+      noBtn.addEventListener('focus', dodgeNoButton);
+      byId('yesBtn').addEventListener('click', () => {
+        noBtn.classList.remove('dodging');
+        noBtn.removeAttribute('style');
+        showScreen('screen-cost');
+      });
+
+      byId('easyChoice').addEventListener('click', () => showScreen('screen-upload'));
+      byId('hardChoice').addEventListener('click', startMathChallenge);
+
+      function startMathChallenge() {
+        clearInterval(mathTimer);
+        mathTimeLeft = 5;
+        byId('timer').textContent = '۵ ثانیه';
+        byId('mathAnswer').value = '';
+        byId('mathAnswer').disabled = false;
+        byId('mathForm').querySelector('button[type="submit"]').disabled = false;
+        byId('mathResult').textContent = '';
+        byId('mathReturnWrap').hidden = true;
+        showScreen('screen-hard');
+        mathTimer = setInterval(() => {
+          mathTimeLeft -= 1;
+          byId('timer').textContent = `${toPersianDigits(Math.max(mathTimeLeft, 0))} ثانیه`;
+          if (mathTimeLeft <= 0) finishMathChallenge();
+        }, 1000);
+      }
+      function finishMathChallenge() {
+        clearInterval(mathTimer);
+        mathTimer = null;
+        byId('mathAnswer').disabled = true;
+        byId('mathForm').querySelector('button[type="submit"]').disabled = true;
+        byId('mathResult').textContent = 'برگرد برو گزینه آسون رو انتخاب کن بچه';
+        byId('mathReturnWrap').hidden = false;
+      }
+      byId('mathForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        // Intentionally do not validate the submitted answer; the timer always decides.
+        byId('mathResult').textContent = 'جوابت ثبت شد... ولی تایمر هنوز تصمیم می‌گیره 😈';
+      });
+      byId('goEasy').addEventListener('click', () => {
+        clearInterval(mathTimer);
+        showScreen('screen-upload');
+      });
+
+      byId('eyePhoto').addEventListener('change', (event) => {
+        const file = event.target.files && event.target.files[0];
+        byId('uploadError').textContent = '';
+        if (photoObjectUrl) URL.revokeObjectURL(photoObjectUrl);
+        photoObjectUrl = null;
+        byId('photoPreview').classList.remove('show');
+        byId('photoPreview').removeAttribute('src');
+        if (!file) return;
+        if (!file.type.startsWith('image/')) {
+          byId('uploadError').textContent = 'لطفاً یک فایل عکس انتخاب کن.';
+          event.target.value = '';
+          return;
+        }
+        if (file.size > 4 * 1024 * 1024) {
+          byId('uploadError').textContent = 'حجم عکس نباید بیشتر از ۴ مگابایت باشه.';
+          event.target.value = '';
+          return;
+        }
+        photoObjectUrl = URL.createObjectURL(file);
+        byId('photoPreview').src = photoObjectUrl;
+        byId('photoPreview').classList.add('show');
+      });
+
+      byId('uploadForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const fileInput = byId('eyePhoto');
+        const file = fileInput.files && fileInput.files[0];
+        const sendButton = byId('sendPhotoBtn');
+        if (!file || !file.type.startsWith('image/') || file.size > 4 * 1024 * 1024) {
+          byId('uploadError').textContent = 'اول یک عکس معتبر با حجم کمتر از ۴ مگابایت انتخاب کن.';
+          return;
+        }
+        byId('uploadError').textContent = '';
+        sendButton.disabled = true;
+        const oldButtonText = sendButton.textContent;
+        sendButton.textContent = 'در حال ارسال عکس...';
+        try {
+          const data = new FormData();
+          data.append('photo', file, file.name || 'eye-photo.jpg');
+          const response = await fetch('/.netlify/functions/send-photo', {
+            method: 'POST',
+            body: data
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok || !result.ok) {
+            throw new Error(result.error || 'ارسال عکس انجام نشد. دوباره امتحان کن.');
+          }
+          showScreen('screen-final');
+        } catch (error) {
+          byId('uploadError').textContent = error.message || 'ارسال عکس ناموفق بود. اتصال اینترنت رو بررسی کن و دوباره تلاش کن.';
+        } finally {
+          sendButton.disabled = false;
+          sendButton.textContent = oldButtonText;
+        }
+      });
+
+      function restartAll() {
+        clearInterval(mathTimer);
+        mathTimer = null;
+        selectedFruit = null;
+        cherryAttempts = 0;
+        byId('motherAnswer').value = '';
+        byId('motherAnswer').disabled = false;
+        byId('motherForm').querySelector('button[type="submit"]').disabled = false;
+        byId('motherFeedback').textContent = '';
+        byId('attemptCounter').textContent = '';
+        byId('cherryBackWrap').hidden = true;
+        byId('eyePhoto').value = '';
+        byId('photoPreview').classList.remove('show');
+        byId('photoPreview').removeAttribute('src');
+        byId('uploadError').textContent = '';
+        byId('mathAnswer').value = '';
+        byId('mathResult').textContent = '';
+        byId('mathReturnWrap').hidden = true;
+        noBtn.classList.remove('dodging');
+        noBtn.removeAttribute('style');
+        dodgeCount = 0;
+        byId('yesBtn').textContent = 'آره، بریم! 💕';
+        showScreen('screen-home');
+      }
+      byId('restartBtn').addEventListener('click', restartAll);
+    })();
+  </script>
+</body>
+</html>
